@@ -1,0 +1,113 @@
+#!/usr/bin/env python
+#encoding:utf-8
+from modules.report_module import *
+import os
+import sys
+from modules.project_info import *
+from modules.shortread import *
+from modules.gc import *
+from modules.busco import *
+from modules.cegma import *
+
+import argparse
+def parse_input():
+
+	parser = argparse.ArgumentParser(description='Novogene assembly report generation')
+	parser.add_argument('--eval', required = False, dest = "EVAL_DIR", help = "组装评估目录路径")
+	parser.add_argument('--info', required = True, dest = "info", help = "项目信息文本文件路径")
+	parser.add_argument('--out_yaml', required = False, dest = "out_yaml",  action = "store_true",help = "如果指定此参数，则输出yaml文件")
+	parser.add_argument('--in_yaml',  required = False, dest = "in_yaml",  help = "读入yaml,生成html报告;多个yaml文件用逗号分割")
+        #parser.add_argument('-m', '--maxjob', required = False, dest = "maxjob", default = "300", help = "maximum number of job run simultaneously.(default=300)")
+        #parser.add_argument('-c', '--cut', required = False, dest = "cut",default = "1", help = "number of lines to form a job in input_file.(default=1)")
+	parser.add_argument('-n', '--name',required = True,dest = "NAME", help= "物种名称")
+	parser.add_argument('-v', '--version', action = 'version', version = '%(prog)s 1.0')
+        #parser.add_argument('input_file',action="store",type=str)
+	args = parser.parse_args()
+        
+	return args
+
+#report路径
+args = parse_input()
+NAME = args.NAME
+EVAL_DIR = args.EVAL_DIR.strip()
+if EVAL_DIR[-1] != "/":EVAL_DIR += "/"
+PWD = os.getcwd()
+REPORT_DIR = PWD + "/" + NAME + "_report/"
+dirname, filename = os.path.split(os.path.abspath(sys.argv[0])) 
+TEMPLATE_DIR = dirname + "/template"
+try:
+	os.mkdir(REPORT_DIR)
+except:
+	pass
+os.system("cp -r "+TEMPLATE_DIR+"/* "+REPORT_DIR)
+PIC_PATH = "pictures/"
+
+#section_lists中存储输出的section
+section_lists = []
+
+#项目信息section
+info_name = "info"
+info_title = "项目信息"
+info_paras = get_project_info(args.info)
+info_section = [info_name,info_title,add_h3_title(info_name,info_title)+add_paragraph(info_paras),[]]
+add_section(section_lists,info_section)
+
+#测序数据统计section
+data_name = "data"
+data_title = "测序数据统计"
+data_section = [data_name,data_title,add_h3_title(data_name,data_title),[]]
+add_section(section_lists,data_section)
+
+#组装步骤section
+step_name = "step"
+step_title = "组装步骤"
+step_section = [step_name,step_title,add_h3_title(step_name,step_title),[]]
+add_section(section_lists,step_section)
+
+#组装结果section
+result_name = "result"
+result_title = "组装结果"
+result_section = [result_name,result_title,add_h3_title(result_name,result_title),[]]
+add_section(section_lists,result_section)
+
+
+#组装评估 section
+evaluation_name = "evaluation"
+evaluation_title = "组装评估"
+evaluation_section = [evaluation_name,evaluation_title,add_h3_title(evaluation_name,evaluation_title),[]]
+	#get sub_section
+cegma_section,cegma_score = get_cegma(EVAL_DIR,REPORT_DIR)
+shortread_section,mapping_rate,coverage = get_shortread(EVAL_DIR,REPORT_DIR)
+gc_section = get_gc(EVAL_DIR,REPORT_DIR)
+busco_section,busco_score = get_busco(EVAL_DIR,REPORT_DIR)
+
+	#add sections to evaluation sub_section
+EVAL_LIST = [shortread_section,gc_section,cegma_section,busco_section]
+eval_list = EVAL_LIST
+for item in eval_list:
+	if item:
+		evaluation_section[3].append(item)
+	#add evaluation section to section_lists
+if evaluation_section[3] != []:
+	add_section(section_lists,evaluation_section)
+
+if args.out_yaml:
+	with open(REPORT_DIR + "out.yaml",'w',encoding = "utf-8") as output_yaml:
+		import yaml
+		yaml.dump(section_lists,output_yaml,allow_unicode=True)
+else:
+	with open(REPORT_DIR+NAME+"_report.html",'w') as out_html:
+		out_html.write(list2report(section_lists,REPORT_DIR))
+	os.remove(REPORT_DIR+"index.html")
+
+
+
+
+"""
+eval_list = ["busco"]
+for item in eval_list:
+	return_section = eval("get_"+item+"(EVAL_DIR,PIC_PATH)")
+	add_section(section_lists,return_section)
+"""
+
+#evaluation
