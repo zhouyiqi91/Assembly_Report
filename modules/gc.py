@@ -2,6 +2,9 @@
 from modules.report_module import *
 
 def get_gc(EVAL_DIR,REPORT_DIR):
+
+	if not EVAL_DIR:
+		return None
 	
 	PLOT_PATH = EVAL_DIR + "BWA/GC/GC_depth.pos.png"
 	section_name = "gc"

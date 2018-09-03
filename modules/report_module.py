@@ -5,24 +5,27 @@ TEMPLATE_DIR = "/ifs/TJPROJ3/RAD/zhouyiqi/assembly_report/soft/template"
 PIC_PATH = "pictures/"
 
 def add_title(name,title):
+	out = ""
 	if title:
 		out = '<h4><a name=' + name + '>&nbsp;&nbsp;' + title + '</a></h4>'
 	return out
 
 def add_h3_title(name,title):
+	out = ""
 	if title:
 		out = '<h3><a name=' + name + '>' + title + '</a></h3><br/>'
 	return out
 
 def add_paragraph(paras): #paras是一个列表，每个元素是一个段落
+	out = ""
 	if paras:
-		out = ""
 		for para in paras:
 			out += '<p class=paragraph>'+ para + '</p>'
 		#out += '<br/>'
 	return out
 
 def add_plot(plot,REPORT_DIR):  #plot原图片路径,REPORT_DIR是报告目录名称
+	out = ""
 	if plot:
 		plot_file_name = plot.split("/")[-1]
 		shutil.copy(plot,REPORT_DIR+PIC_PATH+plot_file_name)

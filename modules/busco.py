@@ -2,6 +2,9 @@
 from modules.report_module import *
 
 def parse_busco_log(EVAL_DIR):
+
+	if not EVAL_DIR:
+		return None
 	log_file = EVAL_DIR + "BUSCO/run_BUSCO/short_summary_BUSCO.txt"
 	busco_keys = {
 		'Complete': 'Complete BUSCOs',

@@ -2,6 +2,8 @@
 from modules.report_module import *
 
 def parse_shortread_log(EVAL_DIR):
+	if not EVAL_DIR:
+		return None
 	log_file = EVAL_DIR + "BWA/map_rate/result.out"
 	shortread_keys = {
 		'Average_sequencing_depth': 'Average_sequencing_depth',
@@ -57,7 +59,6 @@ def write_snp_table(parsed_data):
 
 def get_shortread(EVAL_DIR,REPORT_DIR):
 	
-	PLOT_PATH = EVAL_DIR + "BWA/map_rate/histPlot.png"
 	section_name = "shortread"
 	section_title = "短reads比对"
 	section_html = ""
@@ -75,6 +76,7 @@ def get_shortread(EVAL_DIR,REPORT_DIR):
 
 	#sec2
 	comments = ["Figure&nbsp:&nbspSequencing depth distribution(Average_sequencing_depth&nbsp:&nbsp"+parsed_data['Average_sequencing_depth']+')','横轴：测序深度，单位X；纵轴：碱基占基因组（无N）的比率']
+	PLOT_PATH = EVAL_DIR + "BWA/map_rate/histPlot.png"
 	section_html += add_plot(PLOT_PATH,REPORT_DIR) + add_comment(comments) + '<br/>'
 
 	#sec3

@@ -2,6 +2,8 @@
 from modules.report_module import *
 
 def parse_cegma_log(EVAL_DIR):
+	if not EVAL_DIR:
+		return None
 	log_file = EVAL_DIR + "CEGMA/species.completeness_report"
 	cegma_keys = {
 		'Complete': 'Complete',

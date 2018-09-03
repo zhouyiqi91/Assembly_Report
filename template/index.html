@@ -60,8 +60,8 @@
                    
                     <li class="active">
                                                            
-                        <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false"> {{ section[1] }}</a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu1">
+                        <a href=#{{ section[0] }} data-toggle="collapse" aria-expanded="false"> {{ section[1] }}</a>
+                        <ul class="collapse list-unstyled" id={{ section[0] }}>
                             {% for sub_section in section[3] %}
                                 
                                 <li><a href="#{{ sub_section[0] }}">{{ sub_section[1] }}</a></li>
