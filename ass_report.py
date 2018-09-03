@@ -50,8 +50,7 @@ section_lists = []
 #项目信息section
 info_name = "info"
 info_title = "项目信息"
-info_paras = get_project_info(args.info)
-info_section = [info_name,info_title,add_h3_title(info_name,info_title)+add_paragraph(info_paras),[]]
+info_section = [info_name,info_title,add_h3_title(info_name,info_title)+get_project_info(args.info),[]]
 add_section(section_lists,info_section)
 
 #测序数据统计section
@@ -105,7 +104,7 @@ if args.out_yaml:
 	with open(REPORT_DIR + args.out_yaml,'w',encoding = "utf-8") as output_yaml:
 		import yaml
 		yaml.dump(section_lists,output_yaml,allow_unicode=True)
-
+		print ("Yaml done.")
 
 if args.in_yaml:
 	import yaml
@@ -117,18 +116,20 @@ if args.in_yaml:
 				new_sub_sections = in_yaml_section[index][3]
 				old_sub_sections = section_lists[index][3]
 				old_subsection_name = []
-				for old_sub_section in new_sub_sections:
-					old_subsection_name.append(old_sub_section)
+				for old_sub_section in old_sub_sections:
+					old_subsection_name.append(old_sub_section[0])
 				if new_sub_sections:   #sub_section不为空
 					for new_sub_section in new_sub_sections:						
 						if new_sub_section[0] not in old_subsection_name:
 							section_lists[index][3].append(new_sub_section)
+							
 			
-			
+		
 if not args.out_yaml:
 	with open(REPORT_DIR+NAME+"_report.html",'w') as out_html:
 		out_html.write(list2report(section_lists,REPORT_DIR))
 	os.remove(REPORT_DIR+"index.html")
+	print ("Reports done.")
 
 
 

@@ -62,9 +62,7 @@ def add_comment(comments):
 
 def add_section(section_lists,new_section):
 	#new_section : [section_name,section_title,section_html,sub_section]
-	if not new_section[3]:
-		new_section[2] += '<br/>'
-	else:
+	if new_section[3]:
 		last_sub_section = new_section[3][-1]
 		last_sub_section[2] += '<br/>'
 	section_lists.append(new_section)
