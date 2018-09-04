@@ -1,8 +1,14 @@
+#encoding:utf-8
 import os
 import shutil
 
 TEMPLATE_DIR = "/ifs/TJPROJ3/RAD/zhouyiqi/assembly_report/soft/template"
 PIC_PATH = "pictures/"
+
+def norm_dir(dir_name):
+	if dir_name and dir_name[-1] != "/":
+		dir_name += "/"
+	return dir_name
 
 def add_title(name,title):
 	out = ""
@@ -37,7 +43,7 @@ def add_plot(plot,REPORT_DIR):  #plot原图片路径,REPORT_DIR是报告目录�
 def add_table(table): #table是一个元组：（名称，列表） 列表第一个元素为表头
 	if table:
 		table_list = table[1]
-		out = '<p class="name_table">' + table[0] + '</p>'
+		out = 'Table&nbsp.&nbsp' + table[0] + '<br/>'
 		out += '<table class="tf1">'
 		for i in range(len(table_list)):
 			out += '<tr>'

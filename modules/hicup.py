@@ -6,6 +6,8 @@ def parse_hicup_log(HICUP_DIR):
 	import glob
 	if HICUP_DIR:
 		log_files = glob.glob(HICUP_DIR + "HiCUP_summary_report*")
+		if not log_files:
+			return None,None
 	else:
 		return None,None
 	if len(log_files) >1:

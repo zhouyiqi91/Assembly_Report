@@ -1,5 +1,6 @@
 #encoding:utf-8
 from modules.report_module import *
+import glob
 
 def parse_la_n50_log(LACHESIS_DIR):
 	if not LACHESIS_DIR:
@@ -21,7 +22,8 @@ def write_la_n50_table(contig,scaffold):
 	for item in n50_list:
 		contig_list.append(contig[item])
 		scaffold_list.append(scaffold[item])
-	table.entend([contig_list,scaffold_list])
+	table.append(contig_list)
+	table.append(scaffold_list)
 
 	return table
 '''
@@ -62,12 +64,19 @@ def get_lachesis(LACHESIS_DIR,REPORT_DIR):
 	table = ("HI-C assisted assembly summary(LACHESIS)",write_la_n50_table(contig,scaffold))
 	section_html = add_title(section_name,section_title) + add_paragraph(paras) + add_table(table) + '<br/>'
 
-	"""
+	
 	#sec2
-	comments = ["Figure&nbsp:&nbspSequencing depth distribution(Average_sequencing_depth&nbsp:&nbsp"+parsed_data['Average_sequencing_depth']+')','横轴：测序深度，单位X；纵轴：碱基占基因组（无N）的比率']
-	PLOT_PATH = EVAL_DIR + "BWA/map_rate/histPlot.png"
-	section_html += add_plot(PLOT_PATH,REPORT_DIR) + add_comment(comments) + '<br/>'
+	sec2_comments = ["Figure&nbsp.&nbspHI-C heatmap"]
+	PLOT_PATH = ""
+	PLOT_LIST = glob.glob(LACHESIS_DIR + "*_HiC_heatmap.jpg")
+	if PLOT_LIST:
+		PLOT_PATH = PLOT_LIST[0]
+	else:
+		print (LACHESIS_DIR + "*_HiC_heatmap.jpg not exist!Continue anyway.")
 
+	section_html += add_plot(PLOT_PATH,REPORT_DIR) + add_comment(sec2_comments) + '<br/>'
+
+	"""
 	#sec3
 	snp_comments = ["一般认为纯合SNP比率可以反映基因组组装的正确率"]
 	snp_data = parse_snp_log(EVAL_DIR)
@@ -75,4 +84,4 @@ def get_lachesis(LACHESIS_DIR,REPORT_DIR):
 	section_html += add_table(snp_table) + add_comment(snp_comments) + '<br/>'
 	"""
 
-	return [section_name,section_title,section_html,sub_section],mapping_rate,coverage
+	return [section_name,section_title,section_html,sub_section]

@@ -31,12 +31,9 @@ def parse_input():
 #report路径
 args = parse_input()
 NAME = args.NAME
-EVAL_DIR = args.EVAL_DIR
-HICUP_DIR = args.HICUP_DIR
-LACHESIS_DIR = args.LACHESIS_DIR
-for section_dir in [EVAL_DIR,HICUP_DIR,LACHESIS_DIR]:
-	if section_dir and section_dir[-1] != "/":
-		section_dir += "/"
+EVAL_DIR = norm_dir(args.EVAL_DIR)
+HICUP_DIR = norm_dir(args.HICUP_DIR)
+LACHESIS_DIR = norm_dir(args.LACHESIS_DIR)
 PWD = os.getcwd()
 REPORT_DIR = PWD + "/" + NAME + "_report/"
 dirname, filename = os.path.split(os.path.abspath(sys.argv[0])) 
@@ -79,7 +76,7 @@ step_section = [step_name,step_title,add_h3_title(step_name,step_title),[]]
 lachesis_section = get_lachesis(LACHESIS_DIR,REPORT_DIR)
 #add sections to evaluation sub_section
 STEP_LIST = [lachesis_section]
-step_list = DATA_LIST
+step_list = STEP_LIST
 for item in step_list:
 	if item:
 		step_section[3].append(item)

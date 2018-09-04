@@ -75,7 +75,7 @@ def get_shortread(EVAL_DIR,REPORT_DIR):
 	section_html = add_title(section_name,section_title) + add_paragraph(paras) + add_table(table) + '<br/>'
 
 	#sec2
-	comments = ["Figure&nbsp:&nbspSequencing depth distribution(Average_sequencing_depth&nbsp:&nbsp"+parsed_data['Average_sequencing_depth']+')','横轴：测序深度，单位X；纵轴：碱基占基因组（无N）的比率']
+	comments = ["Figure&nbsp.&nbspSequencing depth distribution(Average_sequencing_depth&nbsp:&nbsp"+parsed_data['Average_sequencing_depth']+')','横轴：测序深度，单位X；纵轴：碱基占基因组（无N）的比率']
 	PLOT_PATH = EVAL_DIR + "BWA/map_rate/histPlot.png"
 	section_html += add_plot(PLOT_PATH,REPORT_DIR) + add_comment(comments) + '<br/>'
 
