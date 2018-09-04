@@ -32,7 +32,9 @@ args = parse_input()
 NAME = args.NAME
 EVAL_DIR = args.EVAL_DIR
 HICUP_DIR = args.HICUP_DIR
-if EVAL_DIR and EVAL_DIR[-1] != "/":EVAL_DIR += "/"
+for section_dir in [EVAL_DIR,HICUP_DIR]:
+	if section_dir and section_dir[-1] != "/":
+		section_dir += "/"
 PWD = os.getcwd()
 REPORT_DIR = PWD + "/" + NAME + "_report/"
 dirname, filename = os.path.split(os.path.abspath(sys.argv[0])) 
@@ -57,9 +59,9 @@ add_section(section_lists,info_section)
 data_name = "data"
 data_title = "测序数据统计"
 data_section = [data_name,data_title,add_h3_title(data_name,data_title),[]]
-	#get sub_section
+#get sub_section
 hicup_section = get_hicup(HICUP_DIR,REPORT_DIR)
-	#add sections to evaluation sub_section
+#add sections to evaluation sub_section
 DATA_LIST = [hicup_section]
 data_list = DATA_LIST
 for item in data_list:
@@ -71,7 +73,17 @@ add_section(section_lists,data_section)
 step_name = "step"
 step_title = "组装步骤"
 step_section = [step_name,step_title,add_h3_title(step_name,step_title),[]]
+#get sub_section
+lachesis_section = get_lachesis(LACHESIS_DIR,REPORT_DIR)
+#add sections to evaluation sub_section
+STEP_LIST = [lachesis_section]
+step_list = DATA_LIST
+for item in step_list:
+	if item:
+		step_section[3].append(item)
 add_section(section_lists,step_section)
+
+
 
 #组装结果section
 result_name = "result"
@@ -81,17 +93,15 @@ add_section(section_lists,result_section)
 
 
 #组装评估 section
-
 evaluation_name = "evaluation"
 evaluation_title = "组装评估"
 evaluation_section = [evaluation_name,evaluation_title,add_h3_title(evaluation_name,evaluation_title),[]]
-	#get sub_section
+#get sub_section
 cegma_section,cegma_score = get_cegma(EVAL_DIR,REPORT_DIR)
 shortread_section,mapping_rate,coverage = get_shortread(EVAL_DIR,REPORT_DIR)
 gc_section = get_gc(EVAL_DIR,REPORT_DIR)
 busco_section,busco_score = get_busco(EVAL_DIR,REPORT_DIR)
-
-	#add sections to evaluation sub_section
+#add sections to evaluation sub_section
 EVAL_LIST = [shortread_section,gc_section,cegma_section,busco_section]
 eval_list = EVAL_LIST
 for item in eval_list:

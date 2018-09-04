@@ -5,7 +5,7 @@ def parse_hicup_log(HICUP_DIR):
 	import pandas as pd
 	import glob
 	if HICUP_DIR:
-		log_files = glob.glob(HICUP_DIR + "/HiCUP_summary_report*")
+		log_files = glob.glob(HICUP_DIR + "HiCUP_summary_report*")
 	else:
 		return None,None
 	if len(log_files) >1:

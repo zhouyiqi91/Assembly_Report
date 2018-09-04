@@ -74,6 +74,25 @@ def list2report(section_lists,REPORT_DIR):
 	html = (template.render(section_lists=section_lists)) 
 	return html
 
+def parse_N50_log(log_file):
+	contig_dic = {}
+	scaf_dic = {}
+	with open(log_file,'r') as log:
+		for line in log:
+			line = line.strip()
+			attr = line.split()
+			if attr[0] == '#Title':
+				header = attr
+			elif attr[0] == 'Contig':
+				contig = attr
+			elif attr[0] == 'Scaffold':
+				scaffold = attr
+	for index in range(len(header)):
+		contig_dic[header[index]] = contig[index]
+		scaf_dic[header[index]] = scaffold[index]
+
+	return contig_dic,scaf_dic
+
 def yaml2report(yaml):
 	pass
 
