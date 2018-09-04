@@ -9,6 +9,7 @@ from modules.gc import *
 from modules.busco import *
 from modules.cegma import *
 from modules.hicup import *
+from modules.lachesis import *
 
 import argparse
 def parse_input():
