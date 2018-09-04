@@ -19,7 +19,7 @@ def parse_input():
 	parser.add_argument('--out_yaml', required = False, dest = "out_yaml", help = "如果指定此参数，则输出yaml文件")
 	parser.add_argument('--in_yaml',  required = False, dest = "in_yaml",  help = "读入yaml,生成html报告;多个yaml文件用逗号分割")
 	parser.add_argument('--hicup', required = False, dest = "HICUP_DIR", help = "HICUP目录路径")
-        #parser.add_argument('-c', '--cut', required = False, dest = "cut",default = "1", help = "number of lines to form a job in input_file.(default=1)")
+	parser.add_argument('--lachesis', required = False, dest = "LACHESIS_DIR",help = "LACHESIS目录路径")
 	parser.add_argument('-n', '--name',required = True,dest = "NAME", help= "物种名称")
 	parser.add_argument('-v', '--version', action = 'version', version = '%(prog)s 1.0')
         #parser.add_argument('input_file',action="store",type=str)
@@ -32,7 +32,8 @@ args = parse_input()
 NAME = args.NAME
 EVAL_DIR = args.EVAL_DIR
 HICUP_DIR = args.HICUP_DIR
-for section_dir in [EVAL_DIR,HICUP_DIR]:
+LACHESIS_DIR = args.LACHESIS_DIR
+for section_dir in [EVAL_DIR,HICUP_DIR,LACHESIS_DIR]:
 	if section_dir and section_dir[-1] != "/":
 		section_dir += "/"
 PWD = os.getcwd()
