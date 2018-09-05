@@ -60,13 +60,13 @@ table {font-family:Calibri, Arial, Helvetica, sans-serif; width:100%; border-col
   font-size:1.1em;
   border-top:2px solid #7386D5;
   border-bottom:2px solid #7386D5;
-  text-align:center;
+  text-align:left;
   }
 .tf1 td
   {
   font-size:1em;
   padding:3px 7px 2px 7px;
-  text-align:center;
+  text-align:left;
   }
 .tf2 th
   {
