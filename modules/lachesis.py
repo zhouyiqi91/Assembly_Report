@@ -26,28 +26,23 @@ def write_la_n50_table(contig,scaffold):
 	table.append(scaffold_list)
 
 	return table
-'''
-def parse_snp_log(EVAL_DIR):
-	log_file = EVAL_DIR + "BWA/SNP/samtools_snp.stat"
-	parsed_data = {}			
-	log = open(log_file,'r').readlines()
-	attr = log[1].strip().split("\t")
-	parsed_data['All_SNP'] = (attr[0],attr[1])
-	parsed_data['Heterozygous_SNP'] = (attr[2],attr[3])
-	parsed_data['Homologous_SNP'] = (attr[4],attr[5])
-	return parsed_data
 
-def write_snp_table(parsed_data):
-
-	output_list = ['All_SNP','Heterozygous_SNP','Homologous_SNP']
-	table = [["SNP category","Number","Percentage"]]
-	for item in output_list:
-		number = str(parsed_data[item][0])
-		percent = round(float(parsed_data[item][1])*100,7)
-		percent = str(percent) + "%"
-		table.append([item,number,percent])
+def parse_la_report_log(LACHESIS_DIR):
+	log_file = LACHESIS_DIR + "REPORT.txt"
+	table = [["LACHESIS category","Number"]]
+	report_list = ['Number of contigs in clusters','Length of contigs in clusters','Number of contigs in orderings','Length of contigs in orderings','Number of contigs in trunks','Length of contigs in trunks']	
+	try:	
+		log = open(log_file,'r').readlines()
+	except:
+		print (LACHESIS_DIR + "REPORT.txt not exist! Continue anyway.")
+		return None
+	for line in log:
+		line = line.strip()
+		for item in report_list:
+			if line.find(item) != -1:
+				attr = line.split(":")
+				table.append([attr[0],attr[1]])
 	return table
-'''
 
 def get_lachesis(LACHESIS_DIR,REPORT_DIR):
 	
@@ -62,26 +57,21 @@ def get_lachesis(LACHESIS_DIR,REPORT_DIR):
 	if not contig:
 		return None
 	table = ("HI-C assisted assembly summary(LACHESIS)",write_la_n50_table(contig,scaffold))
-	section_html = add_title(section_name,section_title) + add_paragraph(paras) + add_table(table) + '<br/>'
+	section_html += add_title(section_name,section_title) + add_paragraph(paras) + add_table(table) + '<br/>'
 
 	
 	#sec2
-	sec2_comments = ["Figure&nbsp.&nbspHI-C heatmap"]
+	sec2_table = ("LACHESIS detail",parse_la_report_log(LACHESIS_DIR))
+	section_html += add_table(sec2_table) + '<br/>'
+
+	#sec3
+	sec3_comments = ["Figure&nbsp.&nbspHI-C heatmap"]
 	PLOT_PATH = ""
 	PLOT_LIST = glob.glob(LACHESIS_DIR + "*_HiC_heatmap.jpg")
 	if PLOT_LIST:
 		PLOT_PATH = PLOT_LIST[0]
 	else:
-		print (LACHESIS_DIR + "*_HiC_heatmap.jpg not exist!Continue anyway.")
+		print (LACHESIS_DIR + "*_HiC_heatmap.jpg not exist! Continue anyway.")
 
-	section_html += add_plot(PLOT_PATH,REPORT_DIR) + add_comment(sec2_comments) + '<br/>'
-
-	"""
-	#sec3
-	snp_comments = ["一般认为纯合SNP比率可以反映基因组组装的正确率"]
-	snp_data = parse_snp_log(EVAL_DIR)
-	snp_table = ("SNP summary",write_snp_table(snp_data))
-	section_html += add_table(snp_table) + add_comment(snp_comments) + '<br/>'
-	"""
-
+	section_html += add_plot(PLOT_PATH,REPORT_DIR) + add_comment(sec3_comments) + '<br/>'
 	return [section_name,section_title,section_html,sub_section]

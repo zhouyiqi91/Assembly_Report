@@ -2,7 +2,7 @@
 import os
 import shutil
 
-TEMPLATE_DIR = "/ifs/TJPROJ3/RAD/zhouyiqi/assembly_report/soft/template"
+#TEMPLATE_DIR = "/ifs/TJPROJ3/RAD/zhouyiqi/assembly_report/soft/template"
 PIC_PATH = "pictures/"
 
 def norm_dir(dir_name):
@@ -41,7 +41,7 @@ def add_plot(plot,REPORT_DIR):  #plot原图片路径,REPORT_DIR是报告目录�
 	return out
 
 def add_table(table): #table是一个元组：（名称，列表） 列表第一个元素为表头
-	if table:
+	if table[1]:
 		table_list = table[1]
 		out = 'Table&nbsp.&nbsp' + table[0] + '<br/>'
 		out += '<table class="tf1">'
@@ -55,6 +55,8 @@ def add_table(table): #table是一个元组：（名称，列表） 列表第一
 					out += '<td>'+ item + '</td>'
 			out += '</tr>'
 		out += '</table>'
+	else:
+		out = ""
 	return out
 
 def add_comment(comments):
@@ -93,6 +95,7 @@ def parse_N50_log(log_file):
 				contig = attr
 			elif attr[0] == 'Scaffold':
 				scaffold = attr
+				break
 	for index in range(len(header)):
 		contig_dic[header[index]] = contig[index]
 		scaf_dic[header[index]] = scaffold[index]
