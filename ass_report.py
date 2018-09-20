@@ -1,8 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #encoding:utf-8
 import os
 import sys
 import argparse
+import configparser as cp
 
 from modules.report_module import *
 from modules.project_info import *
@@ -15,37 +16,39 @@ from modules.lachesis import *
 from modules.scaffold import *
 from modules.ass_steps import *
 from modules.seq_info import *
-
-def parse_input():
-
-	parser = argparse.ArgumentParser(description='Novogene assembly report generation')
-	parser.add_argument('-n', '--name',required = True,dest = "NAME", help= "物种名称")
-	parser.add_argument('--info', required = False, dest = "info", help = "项目信息文本文件路径")
-	parser.add_argument('--seq_info', required = False, dest = "SEQ_INFO", help = "测序数据文本文件，第一行为基因组大小，其余行为输出信息")
-	parser.add_argument('--hicup', required = False, dest = "HICUP_DIR", help = "HICUP目录路径")
-	parser.add_argument('--ass_steps', required = False, dest = "ASS_STEPS", help = "组装步骤，逗号分割。示例：falcon,10x,bionano,lachesis")	
-	parser.add_argument('--scaffold',required = False,dest = "SCAFFOLD_DIR", help= "Scaffold组装版本路径")
-	parser.add_argument('--lachesis', required = False, dest = "LACHESIS_DIR",help = "LACHESIS目录路径")
-	parser.add_argument('--eval', required = False, dest = "EVAL_DIR", help = "组装评估目录路径")
-	parser.add_argument('--out_yaml', required = False, dest = "out_yaml", help = "如果指定此参数，则输出yaml文件")
-	parser.add_argument('--in_yaml',  required = False, dest = "in_yaml",  help = "读入yaml,生成html报告;多个yaml文件用逗号分割")
-	parser.add_argument('-v', '--version', action = 'version', version = '%(prog)s 1.0')
-	args = parser.parse_args()
-        
-	return args
+from modules.background import *
+from modules.library import *
 
 #解析参数
-args = parse_input()
-NAME = args.NAME
-SEQ_INFO = args.SEQ_INFO
-EVAL_DIR = norm_dir(args.EVAL_DIR)
-HICUP_DIR = norm_dir(args.HICUP_DIR)
-LACHESIS_DIR = norm_dir(args.LACHESIS_DIR)
-SCAFFOLD_DIR = norm_dir(args.SCAFFOLD_DIR)
-if args.ASS_STEPS:
-	ASS_STEPS_LIST = args.ASS_STEPS.split(",")
+conf_file = sys.argv[1]
+config = cp.ConfigParser()
+config.read(conf_file)
+
+Project = config["project"]
+Raw_data = config["raw_data"]
+Assembly = config["assembly"]
+Yaml = config["yaml"]
+
+NAME = Project["name"]
+info_file = Project["info"]
+
+SEQ_INFO = Raw_data["seq_info"]
+HICUP_DIR = norm_dir(Raw_data["hicup"])
+
+ASS_STEPS = Assembly["assembly_steps"]
+SCAFFOLD_DIR = norm_dir(Assembly["falcon"])
+EVAL_DIR = norm_dir(Assembly["eval"])
+LACHESIS_DIR = norm_dir(Assembly["lachesis"])
+
+Out_yaml = Yaml["out_yaml"]
+In_yaml = Yaml["in_yaml"]
+
+if ASS_STEPS:
+	ASS_STEPS_LIST = ASS_STEPS.split(",")
 else:
 	ASS_STEPS_LIST = []
+background_list = ASS_STEPS_LIST
+lb_list = background_list
 
 #report路径
 PWD = os.getcwd()
@@ -57,7 +60,6 @@ try:
 except:
 	pass
 os.system("cp -r "+TEMPLATE_DIR+"/* "+REPORT_DIR)
-PIC_PATH = "pictures/"
 
 #section_lists中存储输出的section
 section_lists = []
@@ -65,12 +67,26 @@ section_lists = []
 #项目信息section
 info_name = "info"
 info_title = "项目信息"
-info_section = [info_name,info_title,add_h3_title(info_name,info_title)+get_project_info(args.info),[]]
+info_section = [info_name,info_title,add_h3_title(info_name,info_title)+get_project_info(info_file),[]]
 add_section(section_lists,info_section)
 
-#测序数据统计section
+#背景介绍
+bg_name = "bg"
+bg_title = "背景介绍"
+bg_subsections = get_background(background_list)
+bg_section = [bg_name,bg_title,add_h3_title(bg_name,bg_title)+bg_text(),bg_subsections]
+add_section(section_lists,bg_section)
+
+#建库测序
+lb_name = "lb"
+lb_title = "建库测序"
+lb_subsections = get_lb(background_list)
+lb_section = [lb_name,lb_title,add_h3_title(lb_name,lb_title),lb_subsections]
+add_section(section_lists,lb_section)
+
+#测序数据section
 data_name = "data"
-data_title = "测序数据统计"
+data_title = "测序数据"
 data_section = [data_name,data_title,add_h3_title(data_name,data_title),[]]
 #get sub_section
 seqinfo_section = get_seqinfo(SEQ_INFO,REPORT_DIR)
@@ -123,16 +139,16 @@ for item in eval_list:
 add_section(section_lists,evaluation_section)
 
 #输出yaml
-if args.out_yaml:
-	with open(REPORT_DIR + args.out_yaml,'w',encoding = "utf-8") as output_yaml:
+if Out_yaml:
+	with open(REPORT_DIR + Out_yaml,'w',encoding = "utf-8") as output_yaml:
 		import yaml
 		yaml.dump(section_lists,output_yaml,allow_unicode=True)
 		print ("Yaml done.")
 
 #读入yaml,更新section_lists
-if args.in_yaml:
+if In_yaml:
 	import yaml
-	yaml_list = args.in_yaml.strip().split(",")
+	yaml_list = In_yaml.strip().split(",")
 	for yaml_file in yaml_list:
 		with open( yaml_file,'r',encoding = "utf-8") as in_yaml:
 			in_yaml_section = yaml.load(in_yaml)
@@ -148,7 +164,7 @@ if args.in_yaml:
 							section_lists[index][3].append(new_sub_section)
 		
 #生成html报告		
-if not args.out_yaml:
+if not Out_yaml:
 	with open(REPORT_DIR+NAME+"_report.html",'w') as out_html:
 		out_html.write(list2report(section_lists,REPORT_DIR))
 	os.remove(REPORT_DIR+"index.html")

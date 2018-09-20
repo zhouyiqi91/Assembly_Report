@@ -4,6 +4,7 @@ import shutil
 
 #TEMPLATE_DIR = "/ifs/TJPROJ3/RAD/zhouyiqi/assembly_report/soft/template"
 PIC_PATH = "pictures/"
+IMAGE_PATH = "image/"
 
 def norm_dir(dir_name):
 	if dir_name and dir_name[-1] != "/":
@@ -30,7 +31,7 @@ def add_paragraph(paras): #paras是一个列表，每个元素是一个段落
 		#out += '<br/>'
 	return out
 
-def add_plot(plot,REPORT_DIR):  #plot原图片路径,REPORT_DIR是报告目录名称
+def add_plot(plot,REPORT_DIR):  #plot原图片路径,REPORT_DIR是报告目录路径
 	out = ""
 	if plot:
 		plot_file_name = plot.split("/")[-1]
@@ -38,6 +39,13 @@ def add_plot(plot,REPORT_DIR):  #plot原图片路径,REPORT_DIR是报告目录�
 		plot_final_path = PIC_PATH+"/"+plot_file_name
 		#out = '<p class="name_table">' + plot[0] + '</p>'
 		out = '<center><img class="w85" src=' + plot_final_path +' height="400" width="400"/></center>'
+	return out
+
+def ade_image(image):  #image是图片名称,REPORT_DIR是报告目录；image是保存在模板中的图片。
+	out = ""
+	if image:
+		image_final_path = IMAGE_PATH+"/"+image
+		out = '<center><img class="w85" src=' + image_final_path +' height="400" width="400"/></center>'
 	return out
 
 def add_center(paras):

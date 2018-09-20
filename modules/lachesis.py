@@ -73,5 +73,5 @@ def get_lachesis(LACHESIS_DIR,REPORT_DIR):
 	else:
 		print (LACHESIS_DIR + "*_HiC_heatmap.jpg not exist! Continue anyway.")
 
-	section_html += add_plot(PLOT_PATH,REPORT_DIR) + add_comment(sec3_comments) + '<br/>'
+	section_html += add_plot(PLOT_PATH,REPORT_DIR) + add_center(sec3_comments) + '<br/>'
 	return [section_name,section_title,section_html,sub_section]
