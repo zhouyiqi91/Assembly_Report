@@ -69,7 +69,7 @@ def write_hicup_table(parsed_data_1,parsed_data_2):
 def get_hicup(HICUP_DIR,REPORT_DIR):
 
 	section_name = "hicup"	
-	section_title = "HI-C数据统计(HICUP)"
+	section_title = "HI-C数据质控(HICUP)"
 	section_html = ""
 	sub_section = []
 

@@ -17,7 +17,7 @@ def parse_seqinfo_log(SEQ_INFO):
 			realsize = float(size[0:-1])/1000
 		else:
 			realsize = float(size[0:-1])
-	table_cont = [["Library","Average Insert Size","Data(G)","Coverage(X)"]]
+	table_cont = [["Library","Average Read Length","Data(G)","Coverage(X)"]]
 	for line in log[1:]:
 		attr = line.strip().split()
 		data = float(attr[2])

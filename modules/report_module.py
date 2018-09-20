@@ -40,6 +40,13 @@ def add_plot(plot,REPORT_DIR):  #plot原图片路径,REPORT_DIR是报告目录�
 		out = '<center><img class="w85" src=' + plot_final_path +' height="400" width="400"/></center>'
 	return out
 
+def add_center(paras):
+	out = ""
+	if paras:
+		for para in paras:
+			out += '<p class=center>'+ para + '</p>'
+	return out	
+
 def add_table(table): #table是一个元组：（名称，列表） 列表第一个元素为表头
 	if table[1]:
 		table_list = table[1]

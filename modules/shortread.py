@@ -77,7 +77,7 @@ def get_shortread(EVAL_DIR,REPORT_DIR):
 	#sec2
 	comments = ["Figure&nbsp.&nbspSequencing depth distribution(Average_sequencing_depth&nbsp:&nbsp"+parsed_data['Average_sequencing_depth']+')','横轴：测序深度，单位X；纵轴：碱基占基因组（无N）的比率']
 	PLOT_PATH = EVAL_DIR + "BWA/map_rate/histPlot.png"
-	section_html += add_plot(PLOT_PATH,REPORT_DIR) + add_comment(comments) + '<br/>'
+	section_html += add_plot(PLOT_PATH,REPORT_DIR) + add_center(comments) + '<br/>'
 
 	#sec3
 	snp_comments = ["一般认为纯合SNP比率可以反映基因组组装的正确率"]
