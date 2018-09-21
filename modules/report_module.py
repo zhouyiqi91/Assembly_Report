@@ -41,7 +41,7 @@ def add_plot(plot,REPORT_DIR):  #plot原图片路径,REPORT_DIR是报告目录�
 		out = '<center><img class="w85" src=' + plot_final_path +' height="400" width="400"/></center>'
 	return out
 
-def ade_image(image):  #image是图片名称,REPORT_DIR是报告目录；image是保存在模板中的图片。
+def add_image(image):  #image是图片名称,image是保存在模板中的图片。
 	out = ""
 	if image:
 		image_final_path = IMAGE_PATH+"/"+image

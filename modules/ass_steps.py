@@ -1,8 +1,8 @@
 #encoding:utf-8
 from modules.report_module import *
 
-FALCON = ["falcon 软件组装",
-"A. 对Pacbio数据进行自我纠错，每条reads之间进行比对，根据碱基质量的插入概率，缺失概率，测序错误概率等进行自我纠错。得到纠错后的pre-assemble reads。通常，纠错后的三代数据的正确率可以达到99.999%。","B. 用纠错后的三代数据进行组装，由于三代数据读长很长（平均读长可达10-15kb，最长>40kb），因此，与二代数据不同，组装采用Overlap-Layout-Consensus算法，即通过reads的overlap关系进行拼接，得到的consensus序列。","C. 对上一步组装结果，使用三代数据基于quiver软件对组装结果进行校正，再用二代数据基于pilon软件进行再次校正，从而提高结果的精确度，最终得到高质量的consensus序列。"
+FALCON = ["FALCON 软件组装",
+"A. 对Pacbio数据进行自我纠错，每条reads之间进行比对，根据碱基质量的插入概率，缺失概率，测序错误概率等进行自我纠错。得到纠错后的pre-assemble reads。通常，纠错后的三代数据的正确率可以达到99.999%。","B. 用纠错后的三代数据进行组装，由于三代数据读长很长（平均读长可达10-15kb，最长>40kb），因此，与二代数据不同，组装采用Overlap-Layout-Consensus算法，即通过reads的overlap关系进行拼接，得到的consensus序列。","C. 对上一步组装结果，使用三代数据基于quiver(arrow)软件对组装结果进行校正,再用二代数据基于pilon软件进行再次校正，从而提高结果的精确度，得到高质量的consensus序列。"
 ]
 
 TENX = ["10X Genomics辅助组装",
@@ -24,13 +24,23 @@ ass_steps_dict = {
 	'lachesis':LACHESIS
 }
 
+image_dic = {
+	'falcon':"falcon_step.png",
+	'10x':"tenx_step.png",
+	'bionano':"bionano_step.png",
+	'lachesis':"lachesis_step.png"
+}
+
 def get_ass_steps(ass_steps_list):
 	sub_section = []
 	for item in ass_steps_list:
 		if item in ass_steps_dict:
 			section_name = item +"_step"
 			section_title = ass_steps_dict[item][0]
-			section_html = add_title(section_name,section_title) + add_paragraph(ass_steps_dict[item][1:]) + "</br>"
+			section_html = add_title(section_name,section_title) + add_paragraph(ass_steps_dict[item][1:]) 
+			if item in image_dic:
+				section_html += add_image(image_dic[item])
+			section_html += "</br>"
 			sub_section.append([section_name,section_title,section_html,[]])
 
 	return sub_section

@@ -31,14 +31,14 @@ def write_table_line(name,line_number,contig,scaffold,table):
 
 	return table 
 
-def get_scaffold(FALCON_DIR,TENX_DIR,BIONANO_DIR,LACHESIS_DIR,PILON_DIR):
+def get_scaffold(FALCON_DIR,TENX_DIR,BIONANO_DIR,LACHESIS_DIR,PILON_DIR,ASS_STEPS_LIST):
 	
 	stats_dic ={
-	"Falcon":(FALCON_DIR,1),
-	"10X":(TENX_DIR,2),
-	"Bionano":(BIONANO_DIR,2),
-	"HI-C":(LACHESIS_DIR,2),
-	"Pilon":(PILON_DIR,2)
+	"falcon":(FALCON_DIR,1),
+	"10x":(TENX_DIR,2),
+	"bionano":(BIONANO_DIR,2),
+	"lachesis":(LACHESIS_DIR,2),
+	"pilon":(PILON_DIR,2)
 	}
 
 	section_name = "scaffold"
@@ -50,12 +50,13 @@ def get_scaffold(FALCON_DIR,TENX_DIR,BIONANO_DIR,LACHESIS_DIR,PILON_DIR):
 	table = []
 	table_header = ['Method','Category','Total_length','Total_number','Max_length','N50_length','N50_number']
 	table.append(table_header)
-	for item in stats_dic:
+	for item in ASS_STEPS_LIST:
 		dir_path = stats_dic[item][0]
 		line_number = stats_dic[item][1]
+		name = item.upper()
 		if dir_path:
 			contig,scaffold = parse_scaf_n50_log(dir_path)
-			table = write_table_line(item,line_number,contig,scaffold,table)
+			table = write_table_line(name,line_number,contig,scaffold,table)
 
 	section_html += add_title(section_name,section_title) + add_table(("Assembly summary",table)) + '<br/>'
 

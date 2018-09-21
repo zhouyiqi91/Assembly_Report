@@ -18,6 +18,7 @@ from modules.ass_steps import *
 from modules.seq_info import *
 from modules.background import *
 from modules.library import *
+from modules.reference import *
 
 #解析参数
 conf_file = sys.argv[1]
@@ -114,7 +115,7 @@ result_name = "result"
 result_title = "组装结果"
 result_section = [result_name,result_title,add_h3_title(result_name,result_title),[]]
 #get sub_section
-scaffold_section = get_scaffold(FALCON_DIR,TENX_DIR,BIONANO_DIR,LACHESIS_DIR,PILON_DIR)
+scaffold_section = get_scaffold(FALCON_DIR,TENX_DIR,BIONANO_DIR,LACHESIS_DIR,PILON_DIR,ASS_STEPS_LIST)
 lachesis_section = get_lachesis(LACHESIS_DIR,REPORT_DIR)
 #add sections to evaluation sub_section
 RESULT_LIST = [scaffold_section,lachesis_section]
@@ -141,6 +142,12 @@ for item in eval_list:
 		evaluation_section[3].append(item)
 #add evaluation section to section_lists
 add_section(section_lists,evaluation_section)
+
+#参考文献
+ref_name = "reference"
+ref_title = "参考文献"
+ref_section = [ref_name,ref_title,add_h3_title(ref_name,ref_title) + get_ref(),[]]
+add_section(section_lists,ref_section)
 
 #输出yaml
 if Out_yaml:
