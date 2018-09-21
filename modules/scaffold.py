@@ -12,34 +12,51 @@ def parse_scaf_n50_log(SCAFFOLD_DIR):
 
 	return contig,scaffold
 
-def write_scaf_n50_table(contig,scaffold):
+def write_table_line(name,line_number,contig,scaffold,table):
+	n50_list = ['Total_length','Total_number','Max_length','N50_length','N50_number']
+	if line_number == 1:
+		contig_list = [name,'Contig']
+		for item in n50_list:
+			contig_list.append(contig[item])
+		table.append(contig_list)
 
-	n50_list = ['N50_length','N50_number','Total_length','Total_number']
-	parsed_data = {}
-	table = [['','N50_length','N50_number','Total_length','Total_number']]
-	contig_list = ['Contig']
-	scaffold_list = ['Scaffold']
-	for item in n50_list:
-		contig_list.append(contig[item])
-		scaffold_list.append(scaffold[item])
-	table.append(contig_list)
-	table.append(scaffold_list)
+	if line_number == 2:
+		contig_list = [[name,2],'Contig']
+		scaffold_list = ['Scaffold']
+		for item in n50_list:
+			contig_list.append(contig[item])
+			scaffold_list.append(scaffold[item])
+		table.append(contig_list)
+		table.append(scaffold_list)
 
-	return table
+	return table 
 
-def get_scaffold(SCAFFOLD_DIR,REPORT_DIR):
+def get_scaffold(FALCON_DIR,TENX_DIR,BIONANO_DIR,LACHESIS_DIR,PILON_DIR):
 	
+	stats_dic ={
+	"Falcon":(FALCON_DIR,1),
+	"10X":(TENX_DIR,2),
+	"Bionano":(BIONANO_DIR,2),
+	"HI-C":(LACHESIS_DIR,2),
+	"Pilon":(PILON_DIR,2)
+	}
+
 	section_name = "scaffold"
-	section_title = "Scaffold版本组装结果"
+	section_title = "组装结果统计"
 	section_html = ""
 	sub_section = []
 
 	#sec1
-	paras = ["组装结果统计："]
-	contig,scaffold = parse_scaf_n50_log(SCAFFOLD_DIR)
-	if not contig:
-		return None
-	table = ("Scaffold version summary",write_scaf_n50_table(contig,scaffold))
-	section_html += add_title(section_name,section_title) + add_paragraph(paras) + add_table(table) + '<br/>'
+	table = []
+	table_header = ['Method','Category','Total_length','Total_number','Max_length','N50_length','N50_number']
+	table.append(table_header)
+	for item in stats_dic:
+		dir_path = stats_dic[item][0]
+		line_number = stats_dic[item][1]
+		if dir_path:
+			contig,scaffold = parse_scaf_n50_log(dir_path)
+			table = write_table_line(item,line_number,contig,scaffold,table)
+
+	section_html += add_title(section_name,section_title) + add_table(("Assembly summary",table)) + '<br/>'
 
 	return [section_name,section_title,section_html,sub_section]

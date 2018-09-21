@@ -59,7 +59,7 @@ def add_table(table): #table是一个元组：（名称，列表） 列表第一
 	if table[1]:
 		table_list = table[1]
 		out = 'Table&nbsp.&nbsp' + table[0] + '<br/>'
-		out += '<table class="tf1">'
+		out += '<table class="tf2">'
 		for i in range(len(table_list)):
 			out += '<tr>'
 			if i == 0:
@@ -67,7 +67,10 @@ def add_table(table): #table是一个元组：（名称，列表） 列表第一
 					out += '<th>' + item + '</th>'
 			else:
 				for item in table_list[i]:
-					out += '<td>'+ item + '</td>'
+					if isinstance(item,list):
+						out += '<td rowspan=' + str(item[1]) + '>' + item[0] + '</td>'
+					else:
+						out += '<td>'+ item + '</td>'
 			out += '</tr>'
 		out += '</table>'
 	else:

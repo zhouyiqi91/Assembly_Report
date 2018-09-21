@@ -36,9 +36,12 @@ SEQ_INFO = Raw_data["seq_info"]
 HICUP_DIR = norm_dir(Raw_data["hicup"])
 
 ASS_STEPS = Assembly["assembly_steps"]
-SCAFFOLD_DIR = norm_dir(Assembly["falcon"])
-EVAL_DIR = norm_dir(Assembly["eval"])
+FALCON_DIR = norm_dir(Assembly["falcon"])
+TENX_DIR = norm_dir(Assembly["tenx"])
+BIONANO_DIR = norm_dir(Assembly["bionano"])
 LACHESIS_DIR = norm_dir(Assembly["lachesis"])
+PILON_DIR = norm_dir(Assembly["pilon"])
+EVAL_DIR = norm_dir(Assembly["eval"])
 
 Out_yaml = Yaml["out_yaml"]
 In_yaml = Yaml["in_yaml"]
@@ -102,7 +105,8 @@ add_section(section_lists,data_section)
 #组装步骤section
 step_name = "step"
 step_title = "组装步骤"
-step_section = [step_name,step_title,add_h3_title(step_name,step_title)+get_ass_steps(ASS_STEPS_LIST),[]]
+step_subsections = get_ass_steps(ASS_STEPS_LIST)
+step_section = [step_name,step_title,add_h3_title(step_name,step_title),step_subsections]
 add_section(section_lists,step_section)
 
 #组装结果section
@@ -110,7 +114,7 @@ result_name = "result"
 result_title = "组装结果"
 result_section = [result_name,result_title,add_h3_title(result_name,result_title),[]]
 #get sub_section
-scaffold_section = get_scaffold(SCAFFOLD_DIR,REPORT_DIR)
+scaffold_section = get_scaffold(FALCON_DIR,TENX_DIR,BIONANO_DIR,LACHESIS_DIR,PILON_DIR)
 lachesis_section = get_lachesis(LACHESIS_DIR,REPORT_DIR)
 #add sections to evaluation sub_section
 RESULT_LIST = [scaffold_section,lachesis_section]

@@ -1,7 +1,7 @@
 #encoding:utf-8
 from modules.report_module import *
 import glob
-
+"""
 def parse_la_n50_log(LACHESIS_DIR):
 	if not LACHESIS_DIR:
 		return None,None
@@ -26,7 +26,7 @@ def write_la_n50_table(contig,scaffold):
 	table.append(scaffold_list)
 
 	return table
-
+"""
 def parse_la_report_log(LACHESIS_DIR):
 	log_file = LACHESIS_DIR + "REPORT.txt"
 	table = [["LACHESIS category","Number"]]
@@ -50,7 +50,9 @@ def get_lachesis(LACHESIS_DIR,REPORT_DIR):
 	section_title = "HI-C 辅助组装结果(LACHESIS)"
 	section_html = ""
 	sub_section = []
+	section_html += add_title(section_name,section_title)
 
+	"""
 	#sec1
 	paras = ["利用LACHESIS软件进行HI-C辅助组装结果："]
 	contig,scaffold = parse_la_n50_log(LACHESIS_DIR)
@@ -58,7 +60,7 @@ def get_lachesis(LACHESIS_DIR,REPORT_DIR):
 		return None
 	table = ("HI-C assisted assembly summary(LACHESIS)",write_la_n50_table(contig,scaffold))
 	section_html += add_title(section_name,section_title) + add_paragraph(paras) + add_table(table) + '<br/>'
-
+	"""
 	
 	#sec2
 	sec2_table = ("LACHESIS detail",parse_la_report_log(LACHESIS_DIR))
