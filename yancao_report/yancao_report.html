@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>诺禾致源组装报告</title>
+
+        <!-- Bootstrap CSS CDN -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="css/style2.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+
+		<link rel="StyleSheet" href="js/tree/tree.css" type="text/css">
+        
+		<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/base.css" />
+
+<script src="js/jquery-1.12.0.min.js"> </script>
+<script src="js/jquery-migrate-1.4.1.min.js" >      	</script> 
+
+
+<script src="js/jquery.albumSlider.min.js" type="text/javascript"></script>
+<script src="js/scrollTop.js" type="text/javascript"></script>
+<script src="js/common.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="js/tree/tree.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script> 
+
+
+
+       
+
+
+ 
+    </head>
+    <body>
+
+
+
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3>诺禾致源<br></h3>
+                    <h4>组装报告<h4>
+
+                </div>
+
+                <ul class="list-unstyled components">
+
+                     
+                    
+                     
+                    
+                     <li class="active">                               
+                        <a href="#info">项目信息</a>
+                    </li>
+                        
+                                                
+                    
+                       
+                   
+                    <li class="active">
+                                                           
+                        <a href=#bg data-toggle="collapse" aria-expanded="false"> 背景介绍</a>
+                        <ul class="collapse list-unstyled" id=bg>
+                            
+                                
+                                <li><a href="#falcon_bg">Pacbio Sequel 测序简介</a></li>
+                                
+                            
+                                
+                                <li><a href="#pilon_bg">Illumina 测序简介</a></li>
+                                
+                            
+                                
+                                <li><a href="#10x_bg">10X Genomics 测序简介</a></li>
+                                
+                            
+                                
+                                <li><a href="#bionano_bg">Bionano 光学图谱简介</a></li>
+                                
+                            
+                                
+                                <li><a href="#lachesis_bg">Hi-C 技术简介</a></li>
+                                
+                            
+                        </ul>
+                    </li>
+                    
+                                                
+                    
+                       
+                   
+                    <li class="active">
+                                                           
+                        <a href=#lb data-toggle="collapse" aria-expanded="false"> 建库测序</a>
+                        <ul class="collapse list-unstyled" id=lb>
+                            
+                                
+                                <li><a href="#falcon_lb">Pacbio 建库测序</a></li>
+                                
+                            
+                                
+                                <li><a href="#pilon_lb">Illumina 建库测序</a></li>
+                                
+                            
+                                
+                                <li><a href="#10x_lb">10X Genomics 建库测序</a></li>
+                                
+                            
+                                
+                                <li><a href="#bionano_lb">Bionano 建库测序</a></li>
+                                
+                            
+                                
+                                <li><a href="#lachesis_lb">Hi-C 建库测序</a></li>
+                                
+                            
+                        </ul>
+                    </li>
+                    
+                                                
+                    
+                       
+                   
+                    <li class="active">
+                                                           
+                        <a href=#data data-toggle="collapse" aria-expanded="false"> 测序数据</a>
+                        <ul class="collapse list-unstyled" id=data>
+                            
+                                
+                                <li><a href="#seq_info">测序数据统计</a></li>
+                                
+                            
+                                
+                                <li><a href="#hicup">HI-C数据质控(HICUP)</a></li>
+                                
+                            
+                        </ul>
+                    </li>
+                    
+                                                
+                    
+                       
+                   
+                    <li class="active">
+                                                           
+                        <a href=#step data-toggle="collapse" aria-expanded="false"> 组装步骤</a>
+                        <ul class="collapse list-unstyled" id=step>
+                            
+                                
+                                <li><a href="#falcon_step">FALCON 软件组装</a></li>
+                                
+                            
+                                
+                                <li><a href="#10x_step">10X Genomics辅助组装</a></li>
+                                
+                            
+                                
+                                <li><a href="#bionano_step">Bionano辅助组装</a></li>
+                                
+                            
+                                
+                                <li><a href="#lachesis_step">Hi-C辅助组装</a></li>
+                                
+                            
+                        </ul>
+                    </li>
+                    
+                                                
+                    
+                       
+                   
+                    <li class="active">
+                                                           
+                        <a href=#result data-toggle="collapse" aria-expanded="false"> 组装结果</a>
+                        <ul class="collapse list-unstyled" id=result>
+                            
+                                
+                                <li><a href="#scaffold">组装结果统计</a></li>
+                                
+                            
+                                
+                                <li><a href="#lachesis">HI-C 辅助组装结果(LACHESIS)</a></li>
+                                
+                            
+                        </ul>
+                    </li>
+                    
+                                                
+                    
+                       
+                   
+                    <li class="active">
+                                                           
+                        <a href=#evaluation data-toggle="collapse" aria-expanded="false"> 组装评估</a>
+                        <ul class="collapse list-unstyled" id=evaluation>
+                            
+                                
+                                <li><a href="#shortread">短reads比对</a></li>
+                                
+                            
+                                
+                                <li><a href="#gc">GC含量</a></li>
+                                
+                            
+                                
+                                <li><a href="#cegma">CEGMA评估</a></li>
+                                
+                            
+                                
+                                <li><a href="#busco">BUSCO评估</a></li>
+                                
+                            
+                        </ul>
+                    </li>
+                    
+                                                
+                    
+                     
+                    
+                     <li class="active">                               
+                        <a href="#reference">参考文献</a>
+                    </li>
+                        
+                                                
+                    
+                                    
+                        
+                   
+                    <li class="active">
+                        <a href="#contact" >联系我们</a>
+                     </li>   
+                       
+                    
+                </ul>
+<!--
+                <ul class="list-unstyled CTAs">
+                    <li><a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a></li>
+                    <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a></li>
+                </ul>
+-->
+            </nav>
+
+            <!-- Page Content Holder -->
+            <div id="content">
+
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+
+                        <div class="navbar-header">
+                            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                                <i class="glyphicon glyphicon-align-left"></i>
+                                <span>收起/打开目录</span>
+                            </button>
+                        </div>
+
+                       <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Page</a></li>
+                                <li><a href="#">Page</a></li>
+                                <li><a href="#">Page</a></li>
+                                <li><a href="#">Page</a></li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </nav>
+
+
+
+    <h3><a name=info>项目信息</a></h3><br/><p class=paragraph>项目编号：P101SC17010417-01</p><p class=paragraph>项目名称：华南农业大学1个林木基因组图谱构建及分析软件包NOVO-Neolamarckiacadamba-PCC的开发</p><p class=paragraph>项目负责：北京诺禾致源科技股份有限公司植物业务线</p><p class=paragraph>物种：烟草</p><p class=paragraph>撰写人：李本萍，生物信息分析工程师</p><p class=paragraph>审核人：李奎，组装研发主管</p><br/>
+    
+
+    <h3><a name=bg>背景介绍</a></h3><br/><p class=paragraph>近年来，随着高通量测序技术的发展，三代测序逐渐成为基因组研究的新兴手段。由于二代测序读长短，不能跨过高重复和低复杂度区域，而以PacBio 为代表的第三代测序技术有效的解决了这个问题。该平台利用单分子实时测序，又称SMRT（SingleMolecule Real-Time）测序，构建超长片段的文库，得到超长的reads。</p><p class=paragraph>同时，随着测序新技术的不断涌现，三代PacBio 测序技术，结合10X Genomics、BioNano、Hi-C 等新技术，使得基因组可以组装到Super-Scaffold水平。</p></br>
+    
+        
+            <h4><a name=falcon_bg>&nbsp;&nbsp;Pacbio Sequel 测序简介</a></h4><p class=paragraph>SMRT（Single-Molecule, Real-Time）测序即单分子实时测序（边合成边测序），其原理是：当DNA与聚合酶形成的复合物被ZMW（零模波导孔）捕获后，4种不同荧光标记的dNTP 通过布朗运动随机进入检测区域并与聚合酶结合，与模板匹配的碱基生成化学键的时间远远长于其他碱基停留的时间。因此统计荧光信号存在时间的长短，可区分匹配的碱基与游离碱基。通过统计4种荧光信号与时间的关系图，即可测定DNA 模板序列。</p></br>
+        
+            <h4><a name=pilon_bg>&nbsp;&nbsp;Illumina 测序简介</a></h4><p class=paragraph>Illumina新一代测序技术可以高通量、并行对核酸片段进行深度测序，测序的技术原理是采用可逆性末端边合成边测序反应，首先在DNA片段两端加上序列已知的通用接头构建文库，文库加载到测序芯片Flowcell上，文库两端的已知序列与Flowcell基底上的Oligo序列互补，每条文库片段都经过桥式PCR扩增形成一个簇，测序时采用边合成边测序反应，即在碱基延伸过程中，每个循环反应只能延伸一个正确互补的碱基，根据四种不同的荧光信号确认碱基种类，保证最终的核酸序列质量，经过多个循环后，完整读取核酸序列。</p></br>
+        
+            <h4><a name=10x_bg>&nbsp;&nbsp;10X Genomics 测序简介</a></h4><p class=paragraph>10X Genomics 的linked reads 技术本质上是将barcode 序列引入长序列片段，通过将长片段分配到不同的油滴微粒中，利用GemCode平台对长片段序列进行扩增引入barcode序列以及测序接头引物，然后将序列打断成适合测序大小的片段进行测序，通过barcode序列信息追踪来自每个大片段DNA 模板的多个Reads，从而获得大片段的遗传信息。</p></br>
+        
+            <h4><a name=bionano_bg>&nbsp;&nbsp;Bionano 光学图谱简介</a></h4><p class=paragraph>BioNano 光学图谱系统基于单分子光学图谱技术，通过其特有的芯片技术使完整的单一DNA分子可以在纳米通道中平行排列，拍照成像，展示更完整的基因图谱。它是唯一一种可以将自身系统产生的光学信号与测序数据进行联合组装和分析的物理图谱技术，成本低、耗时少、成效高，对于获取高复杂区域重复序列信息、检测基因组结构变异有着无与伦比的技术优势，成为当前基因组研究的有力武器。</p><p class=paragraph>Irys系统利用内切酶对DNA进行识别、酶切、再次合成并标记荧光，在基因组上添加多个特异性的酶切标记位点，再利用电极将DNA分子导入纳米孔并拉直，使得每个DNA单分子线性化展开，然后进行超长单分子高分辨率扫描荧光成像，经核心算法将酶切位点分布图转化成基因组图谱数据。</p></br>
+        
+            <h4><a name=lachesis_bg>&nbsp;&nbsp;Hi-C 技术简介</a></h4><p class=paragraph>Hi-C 技术是染色体构象捕获（Chromosome conformation capture，简称为3C）的一种衍生技术，以整个细胞核为研究对象，基于高通量测序进行染色体构象的捕获，获得全基因组范围内整个染色质DNA 在空间位置上的关系，在辅助基因组组装和染色体三维结构的研究方面被广泛应用。</p></br><br/>
+        
+    
+
+    <h3><a name=lb>建库测序</a></h3><br/>
+    
+        
+            <h4><a name=falcon_lb>&nbsp;&nbsp;Pacbio 建库测序</a></h4><p class=paragraph>首先对DNA 进行检测，检测合格后将基因组DNA 经26G Needle 片段化，使用BluePippin 选择20kb 以上的片段，经末端修复和加A尾后，再在片段两端分别连接接头，制备DNA文库，如图所示。库检合格，根据文库的有效浓度及数据产出需求使用Pacbio Sequel 平台进行测序。</p></br>
+        
+            <h4><a name=pilon_lb>&nbsp;&nbsp;Illumina 建库测序</a></h4><p class=paragraph>首先将检测合格的DNA样品通过Covaris超声波破碎仪随机打断成片段，经末端修复、加A尾、加测序接头、纯化、PCR扩增等步骤完成。构建好的文库通过Illumina Hiseq测序仪进行双末端测序。</p></br>
+        
+            <h4><a name=10x_lb>&nbsp;&nbsp;10X Genomics 建库测序</a></h4><p class=paragraph>10X Genomics的文库构建核心原理是利用Chromium平台的微流控芯片对微量（1ng）基因组DNA进行精确分区，然后对每个胶珠内的特定barcode序列和DNA 序列进行二代测序。构建好的文库通过Illumina Hiseq测序仪进行双末端测序。</p></br>
+        
+            <h4><a name=bionano_lb>&nbsp;&nbsp;Bionano 建库测序</a></h4><p class=paragraph>A. 提取长片段DNA（>300Kb），用内切酶识别特定的位点，单链切割，荧光标记，用聚合酶修复单链缺口。</p><p class=paragraph>B. 荧光标记的DNA 分子在电场下的纳米通道内被拉直荧光成像。</p><p class=paragraph>C. 单分子荧光成像，获得酶切位点分布图谱CMAP。</p></br>
+        
+            <h4><a name=lachesis_lb>&nbsp;&nbsp;Hi-C 建库测序</a></h4><p class=paragraph>A. 用甲醛固定细胞核染色质后进行酶切，经末端修复后加入生物素标记。</p><p class=paragraph>B. 用连接酶连接、蛋白酶K 消化。</p><p class=paragraph>C. 将DNA 片段打断，磁珠捕获带生物素标记的DNA片段（图5），构建文库，库捡合格后通过Illumina HiSeq PE150 测序。</p></br><br/>
+        
+    
+
+    <h3><a name=data>测序数据</a></h3><br/>
+    
+        
+            <h4><a name=seq_info>&nbsp;&nbsp;测序数据统计</a></h4>Table&nbsp.&nbspSequencing raw data summary<br/><table class="tf2"><tr><th>Library</th><th>Average Read Length</th><th>Data(G)</th><th>Coverage(X)</th></tr><tr><td>Illumina_reads</td><td>350bp</td><td>47.47</td><td>158.23</td></tr><tr><td>Pacbio_reads</td><td>20Kb</td><td>30.18</td><td>100.6</td></tr><tr><td>Bionano_reads</td><td>200bp</td><td>30</td><td>100.0</td></tr><tr><td>10X_reads</td><td>1000bp</td><td>10</td><td>33.33</td></tr></table>* Coverage按照survey预估的基因组大小300M计算<br/><br/>
+        
+            <h4><a name=hicup>&nbsp;&nbsp;HI-C数据质控(HICUP)</a></h4>Table&nbsp.&nbspHI-C data overview(HICUP)<br/><table class="tf2"><tr><th>HICUP category</th><th>Number</th></tr><tr><td>Total pairs</td><td>136762211(100.0%)</td></tr><tr><td>Align and paired</td><td>73469177(53.72%)</td></tr><tr><td>Valid pairs</td><td>45195387(33.05%)</td></tr><tr><td><b><i> Among vaild pairs:</i></b></td><td></td></tr><tr><td>Unique pairs</td><td>44016851(97.39%)</td></tr><tr><td>Cis-close (< 10Kbp)</td><td>5090068(11.26%)</td></tr><tr><td>Cis-far (> 10Kbp)</td><td>8047902(17.81%)</td></tr><tr><td>Trans</td><td>30878881(68.32%)</td></tr><tr><td>Cis-Trans ratio</td><td>42.55%</td></tr></table><br/><br/>
+        
+    
+
+    <h3><a name=step>组装步骤</a></h3><br/>
+    
+        
+            <h4><a name=falcon_step>&nbsp;&nbsp;FALCON 软件组装</a></h4><p class=paragraph>A. 对Pacbio数据进行自我纠错，每条reads之间进行比对，根据碱基质量的插入概率，缺失概率，测序错误概率等进行自我纠错。得到纠错后的pre-assemble reads。通常，纠错后的三代数据的正确率可以达到99.999%。</p><p class=paragraph>B. 用纠错后的三代数据进行组装，由于三代数据读长很长（平均读长可达10-15kb，最长>40kb），因此，与二代数据不同，组装采用Overlap-Layout-Consensus算法，即通过reads的overlap关系进行拼接，得到的consensus序列。</p><p class=paragraph>C. 对上一步组装结果，使用三代数据基于quiver(arrow)软件对组装结果进行校正,再用二代数据基于pilon软件进行再次校正，从而提高结果的精确度，得到高质量的consensus序列。</p><center><img class="w85" src=image//falcon_step.png height="400" width="400"/></center></br>
+        
+            <h4><a name=10x_step>&nbsp;&nbsp;10X Genomics辅助组装</a></h4><p class=paragraph>A. 将10X Genomics文库测序得到Linked-reads与三代组装结果所得consensus序列进行比对，在原有的基础上加上linked reads组装成super-Scaffold。</p><p class=paragraph>B. 对于实际距离比较近的consensus，有很多的Linked-reads支持其连接关系；对于实际距离比较远的consensus，则缺少Linked-reads的支持，无法将其连接，最终得到组装序列。</p><center><img class="w85" src=image//tenx_step.png height="400" width="400"/></center></br>
+        
+            <h4><a name=bionano_step>&nbsp;&nbsp;Bionano辅助组装</a></h4><p class=paragraph>A. BioNano光学图谱单分子荧光成像，获得酶切位点分布光学图谱，通过Irys分析软件组装得到基因内切酶连锁图谱。</p><p class=paragraph>B. 将初始组装版本进行电子酶切，转化为cmap文件，记为NGS cmap。</p><p class=paragraph>C. 通过bionano数据bnx、NGS map和预估基因组大小进行酶位点间距标准化，筛选出最优的组装参数，根据与光学图谱之间的重叠关系，进行bionano数据的组装，生成bionano组装版本，记为BNG cmap。</p><p class=paragraph>D. 将bnx、NGS map、BNG map和初始组装版本基于hybridScaffold软件，设置合理参数，得到最终的Hybrid scaffold版本。</p><center><img class="w85" src=image//bionano_step.png height="400" width="400"/></center></br>
+        
+            <h4><a name=lachesis_step>&nbsp;&nbsp;Hi-C辅助组装</a></h4><p class=paragraph>A. 与组装版本比对：对Hi-C clean data通过BWA软件与初始版本进行比对，只有双端比对上的reads会被用到后续的组装中。</p><p class=paragraph>B. 组装校正：将Hi-C短reads比对到初始组装版本的contig/scaffold，通过比对结果的物理覆盖率信息，将初始版本错误组装的地方打断，作为修正。</p><p class=paragraph>C. 根据两个contig互作强度和互作reads比对的位置对同类的contig/scaffold进行排序和准确定向。</p><p class=paragraph>D. 锚定染色体：根据酶切区域和Hi-C数据提供的link关系，构图并计算权重，将每条染色体的contig或scaffold进行连接，获得染色体水平的基因组组装版本。</p><center><img class="w85" src=image//lachesis_step.png height="400" width="400"/></center></br><br/>
+        
+    
+
+    <h3><a name=result>组装结果</a></h3><br/>
+    
+        
+            <h4><a name=scaffold>&nbsp;&nbsp;组装结果统计</a></h4>Table&nbsp.&nbspAssembly summary<br/><table class="tf2"><tr><th>Method</th><th>Category</th><th>Total_length</th><th>Total_number</th><th>Max_length</th><th>N50_length</th><th>N50_number</th></tr><tr><td>FALCON</td><td>Contig</td><td>4002512215</td><td>9573</td><td>19879311</td><td>1544013</td><td>616</td></tr><tr><td rowspan=2>PILON</td><td>Contig</td><td>4002512215</td><td>9573</td><td>19879311</td><td>1544013</td><td>616</td></tr><tr><td>Scaffold</td><td>4012562690</td><td>3881</td><td>24074840</td><td>2748561</td><td>366</td></tr><tr><td rowspan=2>10X</td><td>Contig</td><td>4002512215</td><td>9573</td><td>19879311</td><td>1544013</td><td>616</td></tr><tr><td>Scaffold</td><td>4012562690</td><td>3881</td><td>24074840</td><td>2748561</td><td>366</td></tr><tr><td rowspan=2>BIONANO</td><td>Contig</td><td>4002512215</td><td>9573</td><td>19879311</td><td>1544013</td><td>616</td></tr><tr><td>Scaffold</td><td>4012562690</td><td>3881</td><td>24074840</td><td>2748561</td><td>366</td></tr><tr><td rowspan=2>LACHESIS</td><td>Contig</td><td>4002510797</td><td>9787</td><td>19879311</td><td>1376620</td><td>674</td></tr><tr><td>Scaffold</td><td>4002733997</td><td>7555</td><td>195412705</td><td>128025399</td><td>14</td></tr></table><br/>
+        
+            <h4><a name=lachesis>&nbsp;&nbsp;HI-C 辅助组装结果(LACHESIS)</a></h4>Table&nbsp.&nbspLACHESIS detail<br/><table class="tf2"><tr><th>LACHESIS category</th><th>Number</th></tr><tr><td>Number of contigs in clusters</td><td>	2258		(22.8% of all contigs)</td></tr><tr><td>Length of contigs in clusters</td><td>	3301208453	(82.48% of all sequence length)</td></tr><tr><td>Number of contigs in orderings</td><td>	2256		(99.91% of all contigs in clusters, 22.78% of all contigs)</td></tr><tr><td>Length of contigs in orderings</td><td>	3300254638	(99.97% of all length in clusters, 82.45% of all sequence length)</td></tr><tr><td>Number of contigs in trunks</td><td>	1758		(77.93% of contigs in orderings)</td></tr><tr><td>Length of contigs in trunks</td><td>	2717302600	(82.34% of length in orderings)</td></tr></table><br/><center><img class="w85" src=pictures//auto_output1500.1500.1500_HiC_heatmap.jpg height="400" width="400"/></center><p class=center>Figure&nbsp.&nbspHI-C heatmap</p><br/><br/>
+        
+    
+
+    <h3><a name=evaluation>组装评估</a></h3><br/>
+    
+        
+            <h4><a name=shortread>&nbsp;&nbsp;短reads比对</a></h4><p class=paragraph>选取小片段文库reads采用BWA软件比对到组装的基因组上，统计reads的比对率、覆盖基因组的程度及深度的分布情况，以此评估组装的完整性和测序的均匀性。</p><p class=paragraph>然后利用samtools软件对BWA比对结果经过染色体坐标排序、去掉重复的reads等处理，进行SNP Calling，并对原始结果进行过滤，得到SNP统计结果，以此评估组装的单碱基正确率。</p><p class=paragraph>结果如下：</p>Table&nbsp.&nbspShort read mapping summary<br/><table class="tf2"><tr><th>Short read mapping_rate and coverage</th><th>Percentage</th></tr><tr><td>Mapping_rate</td><td>99.17%</td></tr><tr><td>Coverage</td><td>99.48%</td></tr><tr><td>Coverage_at_least_4X</td><td>99.66%</td></tr><tr><td>Coverage_at_least_10X</td><td>99.57%</td></tr><tr><td>Coverage_at_least_20X</td><td>99.48%</td></tr></table><br/><center><img class="w85" src=pictures//histPlot.png height="400" width="400"/></center><p class=center>Figure&nbsp.&nbspSequencing depth distribution(Average_sequencing_depth&nbsp:&nbsp131.68)</p><p class=center>横轴：测序深度，单位X；纵轴：碱基占基因组（无N）的比率</p><br/>Table&nbsp.&nbspSNP summary<br/><table class="tf2"><tr><th>SNP category</th><th>Number</th><th>Percentage</th></tr><tr><td>All_SNP</td><td>9691</td><td>0.0034661%</td></tr><tr><td>Heterozygous_SNP</td><td>9464</td><td>0.0033849%</td></tr><tr><td>Homologous_SNP</td><td>227</td><td>8.12e-05%</td></tr></table>一般认为纯合SNP比率可以反映基因组组装的正确率<br/><br/>
+        
+            <h4><a name=gc>&nbsp;&nbsp;GC含量</a></h4><p class=paragraph>对组装的基因组序列以10k为windows无重复计算GC含量和平均深度并作图，可以根据此图分析测序数据是否存在GC偏向性以及样本是否存在污染。结果如下：</p><center><img class="w85" src=pictures//GC_depth.pos.png height="400" width="400"/></center><p class=center>Figure&nbsp.&nbspGC distribution</p><p class=center>主图：GC含量分布图；横轴：GC含量；纵轴：测序深度</p><p class=center>柱状图上：GC含量分布图；柱状图右：测序深度分布图</p><br/>
+        
+            <h4><a name=cegma>&nbsp;&nbsp;CEGMA评估</a></h4><p class=paragraph>CEGMA(Core Eukaryotic Genes Mapping Approach)评估是选取存在于6个真核模式生物中的保守基因（248个gene）构成 core gene库，结合tblastn、genewise和geneid等软件对组装得到的基因组进行评估，以此评估组装基因组的完整性。CEGMA评估结果如下：</p>Table&nbsp.&nbspCEGMA assessment results<br/><table class="tf2"><tr><th>CEGMA category</th><th>Number</th></tr><tr><td>Complete</td><td>241(97.18%)</td></tr><tr><td>Complete+Partial</td><td>245(98.79%)</td></tr></table><br/>
+        
+            <h4><a name=busco>&nbsp;&nbsp;BUSCO评估</a></h4><p class=paragraph>BUSCO（Benchmarking Universal Single-Copy Orthologs：http://busco.ezlab.org/）评估是使用单拷贝直系同源基因库，结合tblastn、augustus和hmmer等软件对组装得到的基因组进行评估，以此评估组装基因组的完整性。BUSCO评估结果如下：</p>Table&nbsp.&nbspBUSCO notation assessment results<br/><table class="tf2"><tr><th>BUSCO category</th><th>Number</th></tr><tr><td>Complete</td><td>1420(98.61%)</td></tr><tr><td>Complete_single_copy</td><td>144(10.0%)</td></tr><tr><td>Complete_duplicated</td><td>1276(88.61%)</td></tr><tr><td>Fragmented</td><td>7(0.49%)</td></tr><tr><td>Missing</td><td>13(0.9%)</td></tr><tr><td>Total</td><td>1440(100.0%)</td></tr></table><br/><br/>
+        
+    
+
+    <h3><a name=reference>参考文献</a></h3><br/><p class=paragraph>1.Eid, John, et al. Real-time DNA sequencing from single polymerase molecules. 2009, Science.</p><p class=paragraph>2.Lieberman-Aiden E, van Berkum N L, Williams L, et al. Comprehensive mapping of long-range interactions reveals folding principles of the human genome[J]. science, 2009, 326(5950): 289-293.</p><p class=paragraph>3.Cock, P.J.A., Fields, C.J., Goto, N., Heuer, M.L., and Rice, P.M. (2010). The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants. Nucleic acids research 38, 1767-1771.</p><p class=paragraph>4.Hansen, K.D., Brenner, S.E., and Dudoit, S. (2010). Biases in Illuminatranscriptome sequencing caused by random hexamer priming. Nucleic acids research 38, e131-e131.</p><p class=paragraph>5.Jiang, L., Schlesinger, F., Davis, C.A., Zhang, Y., Li, R., Salit, M., Gingeras, T.R., and Oliver, B.(2011). Synthetic spike-in standards for RNA-seq experiments. Genome research 21,1543-1551.</p><p class=paragraph>6.Li H, Durbin R: Fast and accurate short read alignment with Burrows-Wheeler transform. Bioinformatics 2009, 25(14):1754-1760.</p>
+    
+
+
+
+
+<h3><a name="contact">联系我们</a></h3>
+<br/>
+<p class="paragraph">北京诺禾致源科技股份有限公司</p>
+<p class="paragraph">Tel:+86010-82837567 to 220 or 221</p>
+<p class="paragraph">Email: [[something]]@novogene.com</p>
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- jQuery CDN -->
+        <!--
+        <script type="text/javascript">
+			var _$ = jQuery.noConflict(true);
+		</script>
+        -->	
+        <!-- <script  src="https://code.jquery.com/jquery-1.12.0.min.js"> </script> -->
+        
+        <!-- Bootstrap Js CDN -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+		
+        <script type="text/javascript">
+            $(document).ready(function () {
+            	
+                $("#sidebar").mCustomScrollbar({
+                    theme: "minimal"
+                });
+
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar, #content').toggleClass('active');
+                    $('.collapse.in').toggleClass('in');
+                    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                });
+            });
+        </script>
+    </body>
+</html>
